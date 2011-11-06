@@ -37,6 +37,7 @@ namespace SignalR_Whiteboard
             }
 
             Clients.addUser(user);
+            Clients.addSystemMessage(new SystemMessage("User " + name + " joined" ));
             Caller.replayInstructions(instructions);
         }
 
@@ -66,6 +67,12 @@ namespace SignalR_Whiteboard
                 lastClear = DateTime.Now;
                 Clients.clear();
                 instructions.Clear();
+                User user = users.FirstOrDefault(u => u.Id == Context.ClientId);
+                Clients.addSystemMessage(new SystemMessage("User " + user.Name + " cleared the whiteboard"));
+            }
+            else
+            {
+                Caller.addSystemMessage(new SystemMessage("Clear can only be called once per minute"));
             }
         }
 
@@ -77,6 +84,7 @@ namespace SignalR_Whiteboard
             {
                 users.Remove(user);
                 Clients.removeUser(user);
+                Clients.addSystemMessage(new SystemMessage("User " + user.Name + " left"));
             }
         }
     }

@@ -91,6 +91,7 @@
     <Compile Include="Models\BoardDetails.cs" />
     <Compile Include="Models\DrawInstruction.cs" />
     <Compile Include="Models\Point.cs" />
+    <Compile Include="Models\SystemMessage.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

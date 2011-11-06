@@ -85,5 +85,50 @@ $(document).ready(function () {
             }
         });
     };
+
+    whiteboard.addSystemMessage = function (message) {
+        var messageText = toLocal(message.Timestamp) + " - " + message.Message;
+
+        $("#system-messages").prepend("<li>" + messageText + "</li>");
+    };
+
+    function formatTime(dt) {
+        var ap = "";
+        var hr = dt.getHours();
+
+        if (hr < 12) {
+            ap = "AM";
+        }
+        else {
+            ap = "PM";
+        }
+
+        if (hr == 0) {
+            hr = 12;
+        }
+
+        if (hr > 12) {
+            hr = hr - 12;
+        }
+
+        var mins = padZero(dt.getMinutes());
+        var seconds = padZero(dt.getSeconds());
+        return hr + ":" + mins + ":" + seconds + " " + ap;
+    }
+
+    function padZero(s) {
+        s = s.toString();
+        if (s.length == 1) {
+            return "0" + s;
+        }
+        return s;
+    }
+
+    function toLocal(dts) {
+        var s = dts.substr('/Date('.length);
+        var ticks = parseInt(s.substr(0, s.length - 2));
+        var dt = new Date(ticks);
+        return formatTime(dt);
+    }
 });
 

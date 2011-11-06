@@ -37,5 +37,9 @@
                 </select>
             </li>
         </ul>
+        <div class="clear">
+        <h3>System Messages</h3>
+        <ul id="system-messages">
+        </ul>
     </div>
 </asp:Content>
