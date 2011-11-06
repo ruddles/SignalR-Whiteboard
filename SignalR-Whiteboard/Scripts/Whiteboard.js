@@ -38,7 +38,6 @@ $(document).ready(function () {
 
     // controls
     $("#clear").click(function () {
-        draw.clear();
         whiteboard.clearBoard();
     });
 

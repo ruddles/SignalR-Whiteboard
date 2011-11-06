@@ -8,6 +8,9 @@ namespace SignalR_Whiteboard
 {
     public class Whiteboard : Hub, IDisconnect
     {
+        private static readonly TimeSpan clearLimit = TimeSpan.FromMinutes(1);
+        private static DateTime lastClear = DateTime.Now.AddHours(-1);
+
         private static IList<User> users = new List<User>();
         private static IList<DrawInstruction> instructions = new List<DrawInstruction>();
 
@@ -58,8 +61,12 @@ namespace SignalR_Whiteboard
 
         public void ClearBoard()
         {
-            Clients.clear();
-            instructions.Clear();
+            if (DateTime.Now - lastClear > clearLimit)
+            {
+                lastClear = DateTime.Now;
+                Clients.clear();
+                instructions.Clear();
+            }
         }
 
         public void Disconnect()
