@@ -55,8 +55,8 @@ draw.drawPen = function (prev, current, color, width) {
     draw.context.strokeStyle = color;
     draw.context.lineWidth = width;
     draw.context.beginPath();
-    draw.context.moveTo(prev.x, prev.y);
-    draw.context.lineTo(current.x, current.y);
+    draw.context.moveTo(prev.X, prev.Y);
+    draw.context.lineTo(current.X, current.Y);
     draw.context.closePath();
     draw.context.stroke();
 }
